@@ -20,7 +20,7 @@ StatsPlugin.prototype.apply = function apply (compiler) {
   compiler.plugin('emit', function onEmit (compilation, done) {
     var json = JSON.stringify(compilation.getStats().toJson(options));
     if(options.forceWrite) {
-      fs.writeFile(path.resolve(compiler.context, compiler.outputOptions.path, output), json, done);
+      fs.writeFile(path.resolve(compiler.outputPath, output), json, done);
     } else {
       compilation.assets[output] = {
         size: function getSize() {
